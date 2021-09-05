@@ -1,0 +1,65 @@
+{
+  "name": "@exportsdk/client",
+  "version": "0.1.0",
+  "description": "JavaScript/TypeScript API client for exportsdk",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "scripts": {
+    "build": "npm run clean && npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "clean": "rm -rf lib/*",
+    "example": "ts-node --project tsconfig.example.json src/example/server.ts",
+    "example:watch": "nodemon src/example/server.ts -- --project tsconfig.example.json",
+    "format": "prettier --ignore-unknown --write *",
+    "lint": "eslint src --ext .js,.ts --max-warnings 0",
+    "lint:fix": "npm run lint -- --fix",
+    "prepare": "husky install",
+    "prepublishOnly": "npm run test -- --passWithNoTests && npm run clean && npm run build",
+    "test": "jest --coverage",
+    "test:e2e": "jest --config=jest.e2e-config.js",
+    "test:watch": "npm run test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exportsdk/exportsdk-js.git"
+  },
+  "keywords": [
+    "exportsdk",
+    "pdf"
+  ],
+  "author": "exportsdk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/exportsdk/exportsdk-js/issues"
+  },
+  "homepage": "https://github.com/exportsdk/exportsdk-js#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.10",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "express": "^4.17.1",
+    "husky": "^7.0.2",
+    "jest": "^27.1.0",
+    "lint-staged": "^11.1.2",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2",
+    "prettier-plugin-organize-imports": "^2.3.3",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,js}": "npm run lint:fix",
+    "**/*": "npm run format"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}

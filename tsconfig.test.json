@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJs"
+  },
+  "include": [
+    "src/**/*.test.ts",
+    "src/**/*.e2e-test.ts",
+    "src/types/vendor/**/*.ts"
+  ],
+  "exclude": []
+}
