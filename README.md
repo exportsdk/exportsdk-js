@@ -10,10 +10,13 @@ A JavaScript/TypeScript API client for [ExportSDK](https://exportsdk.com).
 - [Example application](#example-application)
 - [ExportSdkClient API reference](#exportsdkclient-api-reference)
   - [Methods](#client-methods)
-    - [.renderPdf](#renderPdf)
-    - [.renderPdfToStream](#renderPdfToStream)
-    - [.setApiKey](#setApiKey)
+    - [renderPdf](#renderPdf)
+    - [renderPdfToStream](#renderPdfToStream)
+    - [setApiKey](#setApiKey)
   - [Types](#client-types)
+    - [PdfEncoding](#pdfencoding)
+    - [RenderPdfOptions](#renderpdfoptions)
+    - [Response\<DataType\>](#Response)
     <br/><br/>
 
 # Obtain an API key
@@ -71,24 +74,47 @@ TODO
 <a id="client-methods"></a>
 
 ## Methods
-
 <br />
 
 <a id="renderPdf"></a>
-```
+```typescript
 renderPdf<TemplateData extends Record<string, unknown>>(
   templateId: string,
   templateData?: TemplateData,
   partialOptions: Partial<RenderPdfOptions> = {}
 ) : Promise<Response<Uint8Array>>
 ```
-
+<!-- Description here -->
 <br />
 
 <a id="client-types"></a>
-
 ## Types
-
 <br />
 
-###
+### `PdfEncoding`
+```typescript
+type PdfEncoding = 
+  | 'ascii'
+  | 'utf8'
+  | 'utf16le'
+  | 'ucs2'
+  | 'base64'
+  | 'latin1'
+  | 'binary'
+  | 'hex';
+```
+### `RenderPdfOptions`
+```typescript
+interface RenderPdfOptions {
+  encoding: PdfEncoding;
+}
+```
+
+<a id="Response"></a>
+### `Response<DataType>`
+```typescript
+interface Response<DataType> {
+  data: DataType;
+  status: number;
+}
+
