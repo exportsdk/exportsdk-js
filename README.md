@@ -4,7 +4,7 @@ A JavaScript/TypeScript API client for [ExportSDK](https://exportsdk.com).
 
 # Table of contents
 
-- [Obtain an API key](#obtain-api-key)
+- [Obtain an API key](#obtain-an-api-key)
 - [Install package](#install-package)
 - [Basic usage](#basic-usage)
 - [Example application](#example-application)
@@ -75,13 +75,13 @@ TODO
 <br />
 
 <a id="renderPdf"></a>
-
-### `renderPdf<TemplateData extends Record<string, unknown>>(
-
-templateId: string,
-templateData?: TemplateData,
-partialOptions: Partial<GeneratePdfOptions> = {}
-): Promise<Response<Uint8Array>>`
+```
+renderPdf<TemplateData extends Record<string, unknown>>(
+  templateId: string,
+  templateData?: TemplateData,
+  partialOptions: Partial<RenderPdfOptions> = {}
+) : Promise<Response<Uint8Array>>
+```
 
 <br />
 
