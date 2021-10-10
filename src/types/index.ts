@@ -7,6 +7,6 @@ export interface Response<DataType> {
 
 export type PdfEncoding = ResponseEncoding;
 
-export interface GeneratePdfOptions {
+export interface RenderPdfOptions {
   encoding: PdfEncoding;
 }
