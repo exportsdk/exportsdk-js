@@ -25,10 +25,7 @@ app.post('/pdf', async (req, res) => {
   const exportSdkClient = new ExportSdkClient(apiKey);
 
   if (action === 'Write PDF') {
-    const response = await exportSdkClient.generatePdf(
-      templateId,
-      templateData
-    );
+    const response = await exportSdkClient.renderPdf(templateId, templateData);
 
     await fs.writeFile(
       path.join(__dirname, `pdfs/exportsdk_${new Date().getTime()}.pdf`),
@@ -41,7 +38,7 @@ app.post('/pdf', async (req, res) => {
     res.setHeader('Content-Disposition', `attachment; filename=exportsdk.pdf`);
 
     const pdfStream = await exportSdkClient
-      .generatePdfStream(templateId, templateData)
+      .renderPdfToStream(templateId, templateData)
       .catch(e => {
         console.error(e);
         throw e;
