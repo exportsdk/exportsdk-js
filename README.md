@@ -25,15 +25,11 @@ A JavaScript/TypeScript API client for [ExportSDK](https://exportsdk.com).
 
 Visit the [ExportSDK dashboard](https://app.exportsdk.com/settings/keys), select the appropriate organization and grab an existing API key or generate a new one.
 
-<br />
-
 # Install package
 
 ```sh
 npm install @exportsdk/client
 ```
-
-<br />
 
 # Basic Usage
 
@@ -62,20 +58,13 @@ const templateData = {
 const binary = await client.renderPdf(templateId, templateData);
 const stream = await client.renderPdfToStream(templateId, templateData);
 ```
-
-<br />
-
 # Example Application
 
 An example `Express.js` application demonstrating the use of `ExportSdkClient` can be found [here](src/example).
 
-<br />
-
 # ExportSdkClient API reference
 
 The following sections document the public properties, methods and types of the `ExportSdkClient` object.
-
-<br />
 
 <a id="client-properties"></a>
 ## Properties
