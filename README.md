@@ -9,6 +9,8 @@ A JavaScript/TypeScript API client for [ExportSDK](https://exportsdk.com).
 - [Basic usage](#basic-usage)
 - [Example application](#example-application)
 - [ExportSdkClient API reference](#exportsdkclient-api-reference)
+  - [Properties](#client-properties)
+    - [get apiKey](#get-apikey)
   - [Methods](#client-methods)
     - [renderPdf](#renderPdf)
     - [renderPdfToStream](#renderPdfToStream)
@@ -71,12 +73,21 @@ TODO
 
 # ExportSdkClient API reference
 
-<a id="client-methods"></a>
+<a id="client-properties"></a>
+## Properties
 
+<a id="get-apikey"></a>
+### `get apiKey: string`
+Returns the API key that was used to initialize the client object, or that was last use to call `ExportSdkClient.prototype.setApiKey`.
+
+<br />
+
+<a id="client-methods"></a>
 ## Methods
 <br />
 
 <a id="renderPdf"></a>
+### `ExportSdkClient.prototype.renderPdf`
 ```typescript
 renderPdf<TemplateData extends Record<string, unknown>>(
   templateId: string,
@@ -84,7 +95,23 @@ renderPdf<TemplateData extends Record<string, unknown>>(
   partialOptions: Partial<RenderPdfOptions> = {}
 ) : Promise<Response<Uint8Array>>
 ```
-<!-- Description here -->
+<br />
+
+<a id="renderPdfToStream"></a>
+### `ExportSdkClient.prototype.renderPdfToStream`
+```typescript
+renderPdfToStream<TemplateData extends Record<string, unknown>>(
+  templateId: string,
+  templateData?: TemplateData
+): Promise<Response<NodeJS.ReadableStream>>
+```
+<br />
+
+<a id="setApiKey"></a>
+### `ExportSdkClient.prototype.setApiKey`
+```typescript
+setApiKey(apiKey: string): void
+```
 <br />
 
 <a id="client-types"></a>
