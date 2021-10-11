@@ -67,11 +67,15 @@ const stream = await client.renderPdfToStream(templateId, templateData);
 
 # Example Application
 
-TODO
+An example `Express.js` application demonstrating the use of `ExportSdkClient` can be found [here](src/example).
 
 <br />
 
 # ExportSdkClient API reference
+
+The following sections document the public properties, methods and types of the `ExportSdkClient` object.
+
+<br />
 
 <a id="client-properties"></a>
 ## Properties
