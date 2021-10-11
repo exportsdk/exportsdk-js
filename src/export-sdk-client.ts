@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { CONSTANTS } from './constants';
 import { ResponseError } from './response-error';
-import { GeneratePdfOptions, Response } from './types';
+import { RenderPdfOptions, Response } from './types';
 
 export class ExportSdkClient {
   private _apiKey: string;
@@ -25,9 +25,9 @@ export class ExportSdkClient {
   async renderPdf<TemplateData extends Record<string, unknown>>(
     templateId: string,
     templateData?: TemplateData,
-    partialOptions: Partial<GeneratePdfOptions> = {}
+    partialOptions: Partial<RenderPdfOptions> = {}
   ): Promise<Response<Uint8Array>> {
-    const options: GeneratePdfOptions = {
+    const options: RenderPdfOptions = {
       encoding: 'utf8',
       ...partialOptions,
     };
