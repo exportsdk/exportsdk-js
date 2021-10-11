@@ -73,11 +73,8 @@ The following sections document the public properties, methods and types of the 
 ### `get apiKey: string`
 Returns the API key that was used to initialize the client object, or that was last used to call `ExportSdkClient.prototype.setApiKey`.
 
-<br />
-
 <a id="client-methods"></a>
 ## Methods
-<br />
 
 <a id="renderPdf"></a>
 ### `ExportSdkClient.prototype.renderPdf`
@@ -90,8 +87,6 @@ renderPdf<TemplateData extends Record<string, unknown>>(
 ```
 Renders the template associated with the provided template ID using the provided data. Returns the rendered template to binary data.
 
-<br />
-
 <a id="renderPdfToStream"></a>
 ### `ExportSdkClient.prototype.renderPdfToStream`
 ```typescript
@@ -102,8 +97,6 @@ renderPdfToStream<TemplateData extends Record<string, unknown>>(
 ```
 Renders the template associated with the provided template ID using the provided data. Returns the rendered template as a NodeJS `ReadableStream`, which is convenient for returning the PDF file as an HTTP response.
 
-<br />
-
 <a id="setApiKey"></a>
 ### `ExportSdkClient.prototype.setApiKey`
 ```typescript
@@ -111,11 +104,8 @@ setApiKey(apiKey: string): void
 ```
 Sets the API key used to authenticate the HTTP requests to the ExportSDK REST API.
 
-<br />
-
 <a id="client-types"></a>
 ## Types
-<br />
 
 ### `PdfEncoding`
 ```typescript
