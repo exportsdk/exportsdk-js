@@ -34,7 +34,7 @@ export class ExportSdkClient {
 
     try {
       const response = await this.http.post(
-        '/',
+        '/v1/pdf',
         {
           templateId,
           data: templateData,
@@ -64,7 +64,7 @@ export class ExportSdkClient {
   ): Promise<Response<NodeJS.ReadableStream>> {
     try {
       const response = await this.http.post(
-        '/',
+        '/v1/pdf',
         {
           templateId,
           data: templateData,
