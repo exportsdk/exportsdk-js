@@ -13,38 +13,54 @@ app.get('/', (req, res) => {
 });
 
 app.post('/pdf', async (req, res) => {
-  console.log(req.body);
-  const {
-    action,
-    apiKey,
-    templateId,
-    templateData: templateDataStr,
-  } = req.body;
-  const templateData = JSON.parse(templateDataStr);
-
-  const exportSdkClient = new ExportSdkClient(apiKey);
-
-  if (action === 'Write PDF') {
-    const response = await exportSdkClient.renderPdf(templateId, templateData);
-
-    await fs.writeFile(
-      path.join(__dirname, `pdfs/exportsdk_${new Date().getTime()}.pdf`),
-      response.data
+  try {
+    const {
+      action,
+      apiKey: apiKeyRaw,
+      filename: filenameRaw = '',
+      templateId: templateIdRaw,
+      templateData: templateDataStr = '',
+    } = req.body;
+    const apiKey = apiKeyRaw.trim();
+    const filename =
+      filenameRaw.trim() || `exportsdk_${new Date().getTime()}.pdf`;
+    const templateId = templateIdRaw.trim();
+    const templateData = JSON.parse(
+      templateDataStr.trim().replace(/(\r|\n)/g, '')
     );
 
-    res.redirect('/');
-  } else if (action === 'Stream PDF') {
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename=exportsdk.pdf`);
+    const exportSdkClient = new ExportSdkClient(apiKey);
 
-    const pdfStream = await exportSdkClient
-      .renderPdfToStream(templateId, templateData)
-      .catch(e => {
-        console.error(e);
-        throw e;
-      });
+    if (action === 'Write PDF') {
+      const response = await exportSdkClient.renderPdf(
+        templateId,
+        templateData
+      );
 
-    pdfStream.data.pipe(res);
+      await fs.writeFile(
+        path.join(__dirname, `pdfs/${filename}`),
+        response.data
+      );
+
+      res.redirect('/');
+    } else if (action === 'Stream PDF') {
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader(
+        'Content-Disposition',
+        `attachment; filename=${filename}.pdf`
+      );
+
+      const pdfStream = await exportSdkClient
+        .renderPdfToStream(templateId, templateData)
+        .catch(e => {
+          console.error(e);
+          throw e;
+        });
+
+      pdfStream.data.pipe(res);
+    }
+  } catch (error) {
+    res.status(500).send('Internal server error');
   }
 });
 

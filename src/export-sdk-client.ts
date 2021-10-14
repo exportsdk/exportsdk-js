@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { CONSTANTS } from './constants';
 import { ResponseError } from './response-error';
-import { RenderPdfOptions, Response } from './types';
+import { RenderPdfOptions, RenderPdfToStreamOptions, Response } from './types';
 
 export class ExportSdkClient {
   private _apiKey: string;
@@ -13,13 +13,15 @@ export class ExportSdkClient {
   }
 
   private static getAxiosInstance(apiKey: string): AxiosInstance {
-    return axios.create({
+    const instance = axios.create({
       baseURL: CONSTANTS.API_URL,
       headers: {
         'Content-Type': 'application/json',
         'X-API-KEY': apiKey,
       },
     });
+
+    return instance;
   }
 
   async renderPdf<TemplateData extends Record<string, unknown>>(
@@ -38,6 +40,7 @@ export class ExportSdkClient {
         {
           templateId,
           data: templateData,
+          filename: options.filename,
         },
         {
           responseType: 'arraybuffer',
@@ -60,7 +63,8 @@ export class ExportSdkClient {
 
   async renderPdfToStream<TemplateData extends Record<string, unknown>>(
     templateId: string,
-    templateData?: TemplateData
+    templateData?: TemplateData,
+    partialOptions: Partial<RenderPdfToStreamOptions> = {}
   ): Promise<Response<NodeJS.ReadableStream>> {
     try {
       const response = await this.http.post(
@@ -68,6 +72,7 @@ export class ExportSdkClient {
         {
           templateId,
           data: templateData,
+          filename: partialOptions.filename,
         },
         { responseType: 'stream' }
       );
