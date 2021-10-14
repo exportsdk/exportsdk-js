@@ -14,6 +14,10 @@
         <label for="templateId">Template ID</label>
         <input id="templateId" name="templateId" />
       </div>
+      <div style="margin-bottom: 2rem">
+        <label for="filename">Filename</label>
+        <input id="filename" name="filename" />
+      </div>
       <div>
         <label for="template-data">Template data (JSON)</label><br />
         <textarea
@@ -26,8 +30,5 @@
       <input type="submit" name="action" value="Stream PDF" />
       <input type="submit" name="action" value="Write PDF" />
     </form>
-    <a href="/pdf-stream" download>Download PDF from stream</a>
-    <br />
-    <a href="/write-pdf-file">Write PDF file to disk</a>
   </body>
 </html>
