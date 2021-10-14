@@ -1,6 +1,6 @@
 {
   "name": "@exportsdk/client",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "JavaScript/TypeScript API client for exportsdk",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
