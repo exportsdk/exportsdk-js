@@ -17,11 +17,13 @@ app.post('/pdf', async (req, res) => {
     const {
       action,
       apiKey: apiKeyRaw,
+      debug: debugRaw,
       filename: filenameRaw = '',
       templateId: templateIdRaw,
       templateData: templateDataStr = '',
     } = req.body;
     const apiKey = apiKeyRaw.trim();
+    const debug = Boolean(debugRaw);
     const filename =
       filenameRaw.trim() || `exportsdk_${new Date().getTime()}.pdf`;
     const templateId = templateIdRaw.trim();
@@ -34,7 +36,8 @@ app.post('/pdf', async (req, res) => {
     if (action === 'Write PDF') {
       const response = await exportSdkClient.renderPdf(
         templateId,
-        templateData
+        templateData,
+        { debug }
       );
 
       await fs.writeFile(
@@ -51,7 +54,7 @@ app.post('/pdf', async (req, res) => {
       );
 
       const pdfStream = await exportSdkClient
-        .renderPdfToStream(templateId, templateData)
+        .renderPdfToStream(templateId, templateData, { debug })
         .catch(e => {
           console.error(e);
           throw e;

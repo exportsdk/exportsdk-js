@@ -3,6 +3,7 @@ import { ResponseEncoding } from 'axios';
 export type PdfEncoding = ResponseEncoding;
 
 export interface CommonPdfOptions {
+  debug?: boolean;
   filename?: string;
 }
 
