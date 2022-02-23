@@ -38,6 +38,7 @@ export class ExportSdkClient {
       const response = await this.http.post(
         '/v1/pdf',
         {
+          debug: options.debug,
           templateId,
           data: templateData,
           filename: options.filename,
@@ -70,6 +71,7 @@ export class ExportSdkClient {
       const response = await this.http.post(
         '/v1/pdf',
         {
+          debug: partialOptions.debug,
           templateId,
           data: templateData,
           filename: partialOptions.filename,
