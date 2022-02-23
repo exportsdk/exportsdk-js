@@ -16,8 +16,10 @@ A JavaScript/TypeScript API client for [ExportSDK](https://exportsdk.com).
     - [renderPdfToStream](#renderPdfToStream)
     - [setApiKey](#setApiKey)
   - [Types](#client-types)
+    - [CommonPdfOptions](#commonpdfoptions)
     - [PdfEncoding](#pdfencoding)
     - [RenderPdfOptions](#renderpdfoptions)
+    - [RenderPdfToStreamOptions](#renderpdftostreamoptions)
     - [Response\<DataType\>](#Response)
     <br/><br/>
 
@@ -92,7 +94,8 @@ Renders the template associated with the provided template ID using the provided
 ```typescript
 renderPdfToStream<TemplateData extends Record<string, unknown>>(
   templateId: string,
-  templateData?: TemplateData
+  templateData?: TemplateData,
+  partialOptions: Partial<RenderPdfToStreamOptions> = {}
 ): Promise<Response<NodeJS.ReadableStream>>
 ```
 Renders the template associated with the provided template ID using the provided data. Returns the rendered template as a NodeJS `ReadableStream`, which is convenient for returning the PDF file as an HTTP response.
@@ -106,6 +109,14 @@ Sets the API key used to authenticate the HTTP requests to the ExportSDK REST AP
 
 <a id="client-types"></a>
 ## Types
+
+### `CommonPdfOptions`
+```typescript
+interface CommonPdfOptions {
+  debug?: boolean;
+  filename?: string;
+}
+```
 
 ### `PdfEncoding`
 ```typescript
@@ -121,9 +132,14 @@ type PdfEncoding =
 ```
 ### `RenderPdfOptions`
 ```typescript
-interface RenderPdfOptions {
+interface RenderPdfOptions extends CommonPdfOptions {
   encoding: PdfEncoding;
 }
+```
+
+### `RenderPdfToStreamOptions`
+```typescript
+type RenderPdfToStreamOptions = CommonPdfOptions;
 ```
 
 <a id="Response"></a>
